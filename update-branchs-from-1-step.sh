@@ -24,12 +24,13 @@ git branch --list | grep -v -e "$rama_origen" $filtro_grep | while read -r rama;
 
   # Verificar si hay conflictos
   if [ $? -ne 0 ]; then
-    echo "Conflicto detectado en $rama. Resuelve manualmente y luego haz commit."
-    exit 1
+    git merge --abort  # Cancela el merge en caso de conflicto
+    continue  # Salta a la siguiente rama
   else
     echo "Merge exitoso en $rama"
   fi
 done
 
-# Si los cambios funcionan en todas las ramas, este comando actualiza las ramas en el repositorio remoto
-# git push origin --all
+echo "Proceso terminado. Revisa las ramas con errores manualmente si las hay."
+echo "Aplica los cambios en el repositorio remoto con el comando:"
+echo "git push origin --all"
