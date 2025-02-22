@@ -30,3 +30,6 @@ git branch --list | grep -v -e "$rama_origen" $filtro_grep | while read -r rama;
     echo "Merge exitoso en $rama"
   fi
 done
+
+# Si los cambios funcionan en todas las ramas, este comando actualiza las ramas en el repositorio remoto
+# git push origin --all
